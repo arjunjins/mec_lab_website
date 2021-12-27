@@ -1,0 +1,11 @@
+<script>    
+function myFunction(val){ 
+
+    document.getElementById("x").innerHTML = val; 
+
+}
+</script>
+<form method="POST">
+    <input name="text" id="p" onkeyup="myFunction(this.value)">
+    <input type="submit" id="x" value={{y}}>
+</form>
