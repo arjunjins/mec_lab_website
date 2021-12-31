@@ -1,4 +1,3 @@
-
 <script> 
 let string = "HELLO";
 const keys = ["E","N","I","T","R","L","S","A","U","O","D","Y","C","H","G","M","P","TION","B","LY","K","V","W","F","Z","X","Q","J"];
@@ -6,16 +5,26 @@ const idx = 6;
 var accuracy = 100;
 var progress = 0;
 var completion = 0;
-var items = keys.slice(0,idx);
+var items = keys.slice(0,idx); // weighted list
 
-/*
-// weighted random
-function wr()
-{
-    var item = items[Math.floor(Math.random()*items.length)];
-    return item;
+var up = 0;
+var lp = 0;
+
+
+function accur(val,word){
+
+    up += word.length;
+    lp += word.length;
+    
+    let l = val.length-1;
+    
+    if(val[l]==word[l]){
+        up--;
+    }
+    
+    return up/lp*100;
 }
-*/
+
 
 // random word
 function wor()
@@ -24,14 +33,17 @@ function wor()
     
     for(let i = 0;i<[1,2,3,4,5,6,7,8,9][Math.floor(Math.random()*9)];i++)
     {
-        s += items[Math.floor(Math.random()*items.length)]; //wr();
+        s += items[Math.floor(Math.random()*items.length)];
     }
     return s;
 }
 
 // updater
-function myFunction(val,word)
+function myFunction(val)
 {
+    
+    document.getElementById("accur").innerHTML = "Accuracy = " + accur(val,string) + " %";
+    
     //document.getElementById("myDiv").innerHTML = val; 
     if(val.toUpperCase() == string)
     {
@@ -56,9 +68,8 @@ function myFunction(val,word)
           	}    
           	
           	items = keys.slice(0,idx);
-            var l = items.length//2;
-            
-            for(let j = 0; j<l-6 ;j++)
+            let l = items.length//2;
+            for(let i = 0;i<l-6;i++)
             {
                 items.push(items[-1]);
             } 
@@ -75,5 +86,6 @@ function myFunction(val,word)
 <p style="text-align: center;"><strong><span style="font-family: Comic Sans MS, sans-serif;">Keyword</span></strong></p>
 <hr>
 <p id="word" style="text-align: center;">hello</p>
-<p style="text-align: center;"><input type="text" id="type" name={{word}} placeholder="hello" onkeyup="myFunction(this.value,this.name)"></p>
+<p style="text-align: center;"><input type="text" id="type" name="hello" placeholder="hello" onkeyup="myFunction(this.value)"></p>
+<p id="accur" style="text-align: center;">Accuracy = 100 %</p>
 <p id="prog" style="text-align: center;">Progress = 0 %</p>

@@ -22,7 +22,7 @@ def my_form():
 
 @app.route("/word")
 def word():
-    print("clicked")
+    #print("clicked")
     return str(r.randint(0,100))
 
 if __name__ == '__main__':
