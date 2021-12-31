@@ -1,8 +1,59 @@
-<script>    
-function myFunction(val){ 
 
-    document.getElementById("myDiv").innerHTML = val; 
+<script> 
+let string = "HELLO";
+const keys = ["E","N","I","T","R","L","S","A","U","O","D","Y","C","H","G","M","P","TION","B","LY","K","V","W","F","Z","X","Q","J"];
+const idx = 6;
+var accuracy = 100;
+var progress = 0;
 
-}</script>
-<p>Contact's first name <input type="text" id="fname" onkeyup="myFunction(this.value)">
-<div id="myDiv">Contact's</div> phone number <input type="text" id="phn"></p>
+// weighted random
+function wr(items)
+{
+    
+    var item = items[Math.floor(Math.random()*items.length)];
+    return item;
+}
+
+// random word
+function wor(l)
+{   
+    let s = "";
+    for(let i = 0;i<[1,2,3,4,5,6,7,8,9][Math.floor(Math.random()*9)];i++){
+        s += wr(keys.slice(0,idx));
+    }
+    return s
+}
+
+// updater
+function myFunction(val,word)
+{
+    //document.getElementById("myDiv").innerHTML = val; 
+    if(val.toUpperCase() == string)
+    {
+        string = wor();//d;
+        document.getElementById("word").innerHTML = string
+      	document.getElementById("type").value = ""
+      	document.getElementById("type").placeholder = string
+      	//document.getElementById("type").name = wor()
+      	
+      	progress++;
+      	if(progress>15){
+          	progress = 0;
+          	idx++;
+          	
+          	if(idx==29){
+          	
+              	exit(); // eda complete aayi so ithine oru page endakkane
+              	
+          	}
+      	}
+      	
+    }
+}
+</script>
+
+<p style="text-align: center;"><strong><span style="font-family: Comic Sans MS, sans-serif;">Keyword</span></strong></p>
+<hr>
+<p id="word" style="text-align: center;">hello</p>
+<p style="text-align: center;"><input type="text" id="type" name={{word}} placeholder="hello" onkeyup="myFunction(this.value,this.name)"></p>
+
