@@ -1,5 +1,6 @@
 # mec_lab_website
-Website (Home) with parallax scrolling
+Website (Home) with parallax scrolling (index.html)
+Practice page - keyword.html
 
 KEYWORD 
 
