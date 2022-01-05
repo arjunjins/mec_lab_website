@@ -1,4 +1,4 @@
-# mec_lab_website
+# mec_lab_website TEAM NAME : 100 THIEVES
 Website (Home) with parallax scrolling (index.html)
 Practice page - keyword.html
 
