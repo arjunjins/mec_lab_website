@@ -1,106 +1,110 @@
 <script> 
-let string = "HELLO";
-const keys = ["E","N","I","T","R","L","S","A","U","O","D","Y","C","H","G","M","P","TION","B","LY","K","V","W","F","Z","X","Q","J"];
-const idx = 6;
-var accuracy = 100;
-var progress = 0;
-var completion = 0;
-var items = keys.slice(0,idx); // weighted list
-
-var up = 0;
-var lp = 0;
-
-
-function accur(val,word){
-
-    up += word.length;
-    lp += word.length;
+    let string = "HELLO";
+    const keys = ["E","N","I","T","R","L","S","A","U","O","D","Y","C","H","G","M","P","TION","B","LY","K","V","W","F","Z","X","Q","J"];
+    const idx = 6;
+    var accuracy = 100;
+    var progress = 0;
+    var completion = 0;
+    var items = keys.slice(0,idx); // weighted list
     
-    let l = val.length-1;
+    var up = 0;
+    var lp = 0;
     
-    if(val[l]==word[l]){
-        up--;
+    
+    function accur(val,word){
+    
+        up += word.length;
+        lp += word.length;
+        
+        let l = val.length-1;
+        
+        if(val[l]==word[l]){
+            up--;
+        }
+        
+        return up/lp*100;
     }
     
-    return up/lp*100;
-}
-
-
-// random word
-function wor()
-{   
-    let s = "";
     
-    for(let i = 0;i<[1,2,3,4,5,6,7,8,9][Math.floor(Math.random()*9)];i++)
+    // random word
+    function wor()
+    {   
+        let s = "";
+        
+        for(let i = 0;i<[1,2,3,4,5,6,7,8,9][Math.floor(Math.random()*9)];i++)
+        {
+            s += items[Math.floor(Math.random()*items.length)];
+        }
+        return s;
+    }
+    
+    // updater
+    function myFunction(val)
     {
-        s += items[Math.floor(Math.random()*items.length)];
+        
+        document.getElementById("accur").innerHTML = "Accuracy = " + accur(val,string) + " %";
+        
+        //document.getElementById("myDiv").innerHTML = val; 
+        if(val.toUpperCase() == string)
+        {
+            string = wor();//d;
+            document.getElementById("word").innerHTML = string
+              document.getElementById("type").value = ""
+              document.getElementById("type").placeholder = string
+              //document.getElementById("type").name = wor()
+              
+              progress++;
+              if(progress>15)
+              {
+                  progress = 0;
+                  idx++;
+                  document.getElementById("prog").innerHTML = "Progress = " + idx/29 + " %"
+                  
+                  if(idx==29)
+                  {
+                  
+                      exit(); // eda complete aayi so ithine oru page endakkane
+                      
+                  }    
+                  
+                  items = keys.slice(0,idx);
+                let l = items.length//2;
+                for(let i = 0;i<l-6;i++)
+                {
+                    items.push(items[-1]);
+                } 
+             
+              }
+              else
+              {
+                  document.getElementById("prog").innerHTML = "Progress = " + idx*progress/464 + " %"
+              }  	
+        }
     }
-    return s;
-}
-
-// updater
-function myFunction(val)
-{
+    </script>
     
-    document.getElementById("accur").innerHTML = "Accuracy = " + accur(val,string) + " %";
+    <link rel="stylesheet" type="text/css" href="static/style.css">
     
-    //document.getElementById("myDiv").innerHTML = val; 
-    if(val.toUpperCase() == string)
-    {
-        string = wor();//d;
-        document.getElementById("word").innerHTML = string
-      	document.getElementById("type").value = ""
-      	document.getElementById("type").placeholder = string
-      	//document.getElementById("type").name = wor()
-      	
-      	progress++;
-      	if(progress>15)
-      	{
-          	progress = 0;
-          	idx++;
-          	document.getElementById("prog").innerHTML = "Progress = " + idx/29 + " %"
-          	
-          	if(idx==29)
-          	{
-          	
-              	exit(); // eda complete aayi so ithine oru page endakkane
-              	
-          	}    
-          	
-          	items = keys.slice(0,idx);
-            let l = items.length//2;
-            for(let i = 0;i<l-6;i++)
-            {
-                items.push(items[-1]);
-            } 
-         
-      	}
-      	else
-      	{
-          	document.getElementById("prog").innerHTML = "Progress = " + idx*progress/464 + " %"
-      	}  	
-    }
-}
-</script>
-
-<link rel="stylesheet" type="text/css" href="static/style.css">
-
-<!--<p style="text-align: center;" class="heading"><strong><span style="font-family: Poppins, sans-serif;">Keyword</span></strong></p> -->
-
-
-<header>
-    <nav> 
-        <a href="#" class="heading">KEYWORD</a>
-        <ul class="nav_links">
-            <li><a href="#">Services</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Help</a></li>
-        </ul>
-    </nav>
-    <a class="cta" href="#"><button>Contact</button></a>
-</header>
-<hr>
-<p id="word" style="text-align: center;">hello</p>
-<p style="text-align: center;"><input type="text" id="type" name="hello" placeholder="hello" onkeyup="myFunction(this.value)"></p>
-<p id="accur" style="text-align: center;">Accuracy = 100 %</p>
-<p id="prog" style="text-align: center;">Progress = 0 %</p>
+    <!--<p style="text-align: center;" class="heading"><strong><span style="font-family: Poppins, sans-serif;">Keyword</span></strong></p> -->
+    
+    
+    <header>
+        <nav> 
+            <a href="#" class="heading">KEYWORD</a>
+            <ul class="nav_links">
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="#"><button>Contact</button></a>
+    </header>
+    <hr>
+    <div class = "maindiv">
+        <div>
+    <p id="word" style="text-align: center;">hello</p>
+    <p style="text-align: center;"><input type="text" id="type" name="hello" placeholder="hello" onkeyup="myFunction(this.value)"></p>
+    <p id="accur" style="text-align: center;">Accuracy = 100 %</p>
+    <p id="prog" style="text-align: center;">Progress = 0 %</p>
+    </div>
+    </div>
