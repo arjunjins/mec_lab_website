@@ -1,4 +1,5 @@
 <script> 
+		
     let string = "HELLO";
     const keys = ["E","N","I","T","R","L","S","A","U","O","D","Y","C","H","G","M","P","TION","B","LY","K","V","W","F","Z","X","Q","J"];
     const idx = 6;
@@ -42,7 +43,7 @@
     function myFunction(val)
     {
         
-        document.getElementById("accur").innerHTML = "Accuracy = " + accur(val,string) + " %";
+        document.getElementById("accur").innerHTML = "Accuracy = " + accur(val,string).toFixed(2) + " %";
         
         //document.getElementById("myDiv").innerHTML = val; 
         if(val.toUpperCase() == string)
@@ -58,7 +59,7 @@
               {
                   progress = 0;
                   idx++;
-                  document.getElementById("prog").innerHTML = "Progress = " + idx/29 + " %"
+                  document.getElementById("prog").innerHTML = "Progress = " + (idx/29).toFixed(2) + " %"
                   
                   if(idx==29)
                   {
@@ -77,7 +78,7 @@
               }
               else
               {
-                  document.getElementById("prog").innerHTML = "Progress = " + idx*progress/464 + " %"
+                  document.getElementById("prog").innerHTML = "Progress = " + (idx*progress/464).toFixed(2) + " %"
               }  	
         }
     }
