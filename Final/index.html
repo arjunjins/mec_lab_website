@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Keyword : Learn how to type fast
+        </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <header>
+            <a href="#" class="keyword">KEYWORD</a>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#" onclick="on(1)">About</a></li>
+                <li><a href="#" onclick="on(2)">Contact</a></li>
+                <li><a href="#" onclick="on(3)">Help</a></li>
+				<li><a href="keyword.html">Start</a></li>
+            </ul>
+        </header>
+        <section>
+            <img src="stars.png" id="stars">
+            <img src="moon.png" id="moon">
+            <img src="mountains_behind.png" id="mountains_behind">
+            <h2 id="text">Type faster</h2>
+            <a href="#sec" id="btn">Explore</a>
+            <img src="mountains_front.png" id="mountains_front">
+        </section>
+		
+        <div class="sec" id="sec">
+            <h2>KEYWORD : Learn touch typing faster, easier, efficiently</h2>
+            <p>
+			Our project is a web application that helps the user to learn touch typing 
+			( a method where one types without looking into the keyboard, ie by using one’s muscle memory ).
+			<br>
+			<br>
+			What makes our application unique is that there are no boring repetitive exercises. Unlike most other typing tutors, 
+			this application does not force you to repeat the same lessons like ‘jjf jjk jjf jjk’ over and over again. This is very 
+			annoying and contributes very little to your overall learning. Instead our algorithm produces a set of words which obey phonetic 
+			rules so they sound natural and the user can easily read the words. ( Note : the words produced may or may not be real words with 
+			proper meaning )
+			<br>
+			<br>
+			By modelling the real world, the user gets an extra edge over others, for example, some set of repetitive words like “-tion” will 
+			be coming countless times in the words we produce so that the user learns how to type a set of combination of words also in addition 
+			to studying ’t’ ‘i’ ‘o’ ’n’ individually. This method contributes to muscle memory way faster and saves time when compared to ordinary typing tutor.
+			
+			<br>
+			</p>
+			<a href="keyword.html" id="btn">Start</a>
+        </div>		
+		
+        <script>
+            let stars = document.getElementById('stars');
+            let moon = document.getElementById('moon');
+            let mountains_behind = document.getElementById('mountains_behind');
+            let text = document.getElementById('text');
+            let btn = document.getElementById('btn');
+            let mountains_front = document.getElementById('mountains_front');
+            let header = document.querySelector('header');
+
+
+            window.addEventListener('scroll', function(){
+                let value = window.scrollY;
+                stars.style.left = value * 0.25 + 'px';
+                moon.style.top = value * 0.85 + 'px';
+                mountains_behind.style.top = value * 0.25 + 'px';
+                mountains_front.style.top = value * 0 + 'px';
+                text.style.marginRight = value * 2.5 + 'px';
+                text.style.marginTop = value * 0.5 + 'px';
+                btn.style.marginTop = value * 1 + 'px';
+                header.style.top = value * 0.25 + 'px';
+            })
+			
+			function on(i)
+			{
+				if(i==1){
+					document.getElementById("popabout").style.display = "block";}
+				else if (i==2){
+					document.getElementById("popcontact").style.display = "block";}
+				else if (i==3){
+					document.getElementById("pophelp").style.display = "block";}
+				else if (i==4){
+					document.getElementById("popcs").style.display = "block";}
+				
+			}
+			
+			// When the user clicks on <span> (x), close the modal
+			function off(i)
+			{
+				if(i==1){
+					document.getElementById("popabout").style.display = "none";}
+				else if (i==2){
+					document.getElementById("popcontact").style.display = "none";}
+				else if (i==3){
+					document.getElementById("pophelp").style.display = "none";}		
+				else if (i==4){
+					document.getElementById("popcs").style.display = "none";}	
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+				if (event.target == document.getElementById("popabout")) {
+					document.getElementById("popabout").style.display = "none";
+				}
+				else if (event.target == document.getElementById("popcontact")) {
+					document.getElementById("popcontact").style.display = "none";
+				}
+				else if (event.target == document.getElementById("pophelp")) {
+					document.getElementById("pophelp").style.display = "none";
+				}
+				else if (event.target == document.getElementById("popcs")) {
+					document.getElementById("popcs").style.display = "none";
+				}
+			}
+						
+					
+        </script>
+    </body>
+
+</html>
