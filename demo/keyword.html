@@ -1,0 +1,244 @@
+<script> 
+    let string = "HELLO";
+    const keys = ["E","N","I","T","R","L","S","A","U","O","D","Y","C","H","G","M","P","TION","B","LY","K","V","W","F","Z","X","Q","J"];
+    const idx = 6;
+    var accuracy = 100;
+    var progress = 0;
+    var completion = 0;
+    var items = keys.slice(0,idx); // weighted list
+    
+    var up = 0;
+    var lp = 0;
+    
+    
+    function accur(val,word){
+    
+        up += word.length;
+        lp += word.length;
+        
+        let l = val.length-1;
+        
+        if(val[l]==word[l]){
+            up--;
+        }
+        
+        return up/lp*100;
+    }
+    
+    
+    // random word
+    function wor()
+    {   
+        let s = "";
+        
+        for(let i = 0;i<[1,2,3,4,5,6,7,8,9][Math.floor(Math.random()*9)];i++)
+        {
+            s += items[Math.floor(Math.random()*items.length)];
+        }
+        return s;
+    }
+    
+    // updater
+    function myFunction(val)
+    {
+        
+        document.getElementById("accur").innerHTML = "Accuracy = " + accur(val,string) + " %";
+        
+        //document.getElementById("myDiv").innerHTML = val; 
+        if(val.toUpperCase() == string)
+        {
+            string = wor();//d;
+            document.getElementById("word").innerHTML = string
+              document.getElementById("type").value = ""
+              document.getElementById("type").placeholder = string
+              //document.getElementById("type").name = wor()
+              
+              progress++;
+              if(progress>15)
+              {
+                  progress = 0;
+                  idx++;
+                  document.getElementById("prog").innerHTML = "Progress = " + idx/29 + " %"
+                  
+                  if(idx==29)
+                  {
+                  
+                      exit(); // eda complete aayi so ithine oru page endakkane
+                      
+                  }    
+                  
+                  items = keys.slice(0,idx);
+                let l = items.length//2;
+                for(let i = 0;i<l-6;i++)
+                {
+                    items.push(items[-1]);
+                } 
+             
+              }
+              else
+              {
+                  document.getElementById("prog").innerHTML = "Progress = " + idx*progress/464 + " %"
+              }  	
+        }
+    }
+
+	function on(i)
+	{
+		if(i==1){
+			document.getElementById("popabout").style.display = "block";}
+		else if (i==2){
+			document.getElementById("popcontact").style.display = "block";}
+		else if (i==3){
+			document.getElementById("pophelp").style.display = "block";}
+		else if (i==4){
+			document.getElementById("popcs").style.display = "block";}
+		
+	}
+	
+	// When the user clicks on <span> (x), close the modal
+	function off(i)
+	{
+		if(i==1){
+			document.getElementById("popabout").style.display = "none";}
+		else if (i==2){
+			document.getElementById("popcontact").style.display = "none";}
+		else if (i==3){
+			document.getElementById("pophelp").style.display = "none";}		
+		else if (i==4){
+			document.getElementById("popcs").style.display = "none";}	
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == document.getElementById("popabout")) {
+			document.getElementById("popabout").style.display = "none";
+		}
+		else if (event.target == document.getElementById("popcontact")) {
+			document.getElementById("popcontact").style.display = "none";
+		}
+		else if (event.target == document.getElementById("pophelp")) {
+			document.getElementById("pophelp").style.display = "none";
+		}
+		else if (event.target == document.getElementById("popcs")) {
+			document.getElementById("popcs").style.display = "none";
+		}
+	}
+
+    </script>
+    
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    
+    <!--<p style="text-align: center;" class="heading"><strong><span style="font-family: Poppins, sans-serif;">Keyword</span></strong></p> -->
+    
+    
+    <header>
+        <nav> 
+            <a href="#" class="heading">KEYWORD</a>
+            <ul class="nav_links">
+				<li><a href="index.html">Home</a></li>
+                <li><a href="#" onclick="on(1)">About</a></li>
+				<li><a href="#" onclick="on(2)">Contact</a></li>
+                <li><a href="#" onclick="on(3)">Help</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="#" onclick="on(4)"><button>Coming Soon!</button></a>
+    </header>
+    <hr>
+    <div class = "maindiv">
+        <div>
+			<p id="word" style="text-align: center;">hello</p>
+			<p style="text-align: center;"><input type="text" id="type" name="hello" placeholder="hello" onkeyup="myFunction(this.value)"></p>
+			<br>
+			<p id="accur" style="text-align: center;">Accuracy = 100 %</p>
+			<p id="prog" style="text-align: center;">Progress = 0 %</p>
+		</div>
+    </div>
+	
+
+	<!-- The Modal Template
+	
+	<div id="pop" class = "modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" onclick="off()">&times;</span>
+				<h2>Modal Header</h2>
+			</div>
+			<div class="modal-body">
+				<p>Some text in the Modal Body</p>
+				<p>Some other text...</p>
+			</div>
+			<div class="modal-footer">
+				<h3>Modal Footer</h3>
+			</div>
+		</div>
+	</div>
+	-->
+	
+	<div id="popabout" class = "modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" onclick="off(1)">&times;</span>
+				<h2>About</h2>
+			</div>
+			<div class="modal-body">
+				<p>This web application will help you to learn touch typing which is the art of typing through muscle memory without using your eyesight to find the keys. 
+By using a way more interesting approach to tutoring this art, we hope to make learning it easy and approachable to everyone.</p>
+				<br>
+				<p>More about the project Keyword can be found <a href="https://github.com/arjunjins/mec_lab_website" style="color:blue" target="_blank">here</a>.</p>
+			</div>
+			<div class="modal-footer">
+				<h3>.</h3>
+			</div>
+		</div>
+	</div>
+	
+	<div id="popcontact" class = "modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" onclick="off(2)">&times;</span>
+				<h2>Contact</h2>
+			</div>
+			<div class="modal-body">
+				<p>mail us at : <a href="mailto:georgeptharakan.mec@gmail.com" style="color:blue" target="_blank">georgeptharakan.mec@gmail.com</a></p>
+				<p>Github : <a href="https://github.com/arjunjins/mec_lab_website" style="color:blue" target="_blank">https://github.com/arjunjins/mec_lab_website</a></p>
+			</div>
+			<div class="modal-footer">
+				<h3>.</h3>
+			</div>
+		</div>
+	</div>
+	
+	<div id="pophelp" class = "modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" onclick="off(3)">&times;</span>
+				<h2>Help</h2>
+			</div>
+			<div class="modal-body">
+				<p>To start, type the word you see on screen , i.e. , from "hello".</p>
+				<p>Words will change when entered correctly and your speed, accuracy and progress are noted to calculate your pace and advance you into tougher scenarios.</p>
+			</div>
+			<div class="modal-footer">
+				<h3>.</h3>
+			</div>
+		</div>
+	</div>
+	
+	<div id="popcs" class = "modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" onclick="off(4)">&times;</span>
+				<h2>Coming soon :)</h2>
+			</div>
+			<div class="modal-body">
+				<p><b>Goal setting :</b> User can set goals and deadlines</p>
+				<p><b>Multiplayer :</b> Area where you can flex your typing speed and compete with friends</p>
+				<p><b>Choose your text :</b> Type in your homework/things you want to learn like a blog on python and study simultaneously!</p>
+				<p><b>Osu :</b> For all the anime fans out there, listen and type to the beat of your favourite music</p>
+				<p><b>Challenges, Progress Charts and updates</b></p>
+			</div>
+			<div class="modal-footer">
+				<h3>Stay Tuned!</h3>
+			</div>
+		</div>
+	</div>
